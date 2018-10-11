@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Books shop</title>
+    <link rel="stylesheet" href="lib/bs4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body onload="init()">
+
+    <h1 class="text-center"> Books shop</h1>
+    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create
+        New Book</button>
+
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th onclick="onClickSort(this)" scope="col">Title</th>
+                    <th onclick="onClickSort(this)" scope="col">Price</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col">Image</th>
+
+                </tr>
+            </thead>
+            <tbody class="books-list"></tbody>
+        </table>
+
+
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label onclick="onPrevPage()" class="btn btn-secondary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> ◄
+            </label>
+          
+            <label onclick="onNextPage()"  class="float-right btn btn-secondary">
+                <input type="radio" name="options" id="option3" autocomplete="off"> ►
+            </label>
+        </div>
+
+    </div>
+    <!-- Modal add book -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="addBookModal"
+        aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBookModal">New BOOK</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Title Name:</label>
+                            <input type="text" class="form-control" id="title-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Price:</label>
+                            <input type="text" class="form-control" id="price-input">
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="readAndAddNewBook()">Add
+                        Book</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal read book -->
+    <div class="modal fade" id="book-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Read Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label onclick="onUpdateRate('-')" class="btn btn-secondary active">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked> -
+                        </label>
+                        <label class="btn text-white bg-dark"">
+                         <span id="rate"></span>
+                        </label>
+                        <label onclick="onUpdateRate('+')" class="btn btn-secondary">
+                            <input type="radio" name="options" id="option3" autocomplete="off"> +
+                        </label>
+                    </div>
+
+                    <button onclick="onSaveRate()" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bs4/js/bootstrap.min.js"></script>
+    <script src="js/util-service.js"></script>
+    <script src="js/book-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
