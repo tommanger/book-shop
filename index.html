@@ -10,6 +10,11 @@
 
 <body onload="init()">
 
+    <div class="offcanvas-btn" onClick="goToGallery()">
+        <img id="contact-img" class="fa fa-comment" aria-hidden="true" src="img/logoTM.png" alt="">
+    </div>
+
+
     <h1 class="text-center"> Books shop</h1>
     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create
         New Book</button>
@@ -35,8 +40,8 @@
             <label onclick="onPrevPage()" class="btn btn-secondary active">
                 <input type="radio" name="options" id="option1" autocomplete="off" checked> ◄
             </label>
-          
-            <label onclick="onNextPage()"  class="float-right btn btn-secondary">
+
+            <label onclick="onNextPage()" class="float-right btn btn-secondary">
                 <input type="radio" name="options" id="option3" autocomplete="off"> ►
             </label>
         </div>
@@ -44,8 +49,7 @@
     </div>
     <!-- Modal add book -->
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="addBookModal"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="addBookModal" aria-hidden="true">
 
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -100,7 +104,7 @@
                             <input type="radio" name="options" id="option1" autocomplete="off" checked> -
                         </label>
                         <label class="btn text-white bg-dark"">
-                         <span id="rate"></span>
+                         <span id=" rate"></span>
                         </label>
                         <label onclick="onUpdateRate('+')" class="btn btn-secondary">
                             <input type="radio" name="options" id="option3" autocomplete="off"> +

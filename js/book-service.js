@@ -96,3 +96,7 @@ function prevPage() {
 
 
 }
+
+function goToGallery(){
+    window.open(`https://tommanger.github.io/ca-gallery-master/`,'_blank');
+}
