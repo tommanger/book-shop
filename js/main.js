@@ -2,8 +2,8 @@
 
 function init(){
     createBooks();
-    doTrans();
     renderList('table');
+    doTrans();
 }
 
 function renderList(choice){

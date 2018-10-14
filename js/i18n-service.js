@@ -1,4 +1,11 @@
-var gCurrLang = 'en';
+var gCurrLang = chackLocalLang();
+
+
+    function chackLocalLang() {
+        if (getFromStorage('lang')) {
+            return getFromStorage('lang');
+        } else return 'en';
+    }
 
 var gTrans = {
     title: {
@@ -43,19 +50,19 @@ var gTrans = {
     },
     buttonUpdateTrans: {
         'en': 'Update',
-        'he': 'עדכן' 
+        'he': 'עדכן'
     },
     buttonDeleteTrans: {
         'en': 'Delete',
-        'he': 'מחק'  
+        'he': 'מחק'
     },
     newBookModalTitleTrans: {
         'en': 'New BOOK',
-        'he': 'ספר חדש' 
+        'he': 'ספר חדש'
     },
     newBookModalTitleNewTrans: {
         'en': 'Title Name:',
-        'he': 'שם הספר:' 
+        'he': 'שם הספר:'
     },
     newBookModalPriceNewTrans: {
         'en': 'Price:',
@@ -63,15 +70,15 @@ var gTrans = {
     },
     closeModalTrans: {
         'en': 'Close',
-        'he': 'סגור' 
+        'he': 'סגור'
     },
     addModalTrans: {
         'en': 'Add Book',
-        'he': 'הוסף ספר' 
+        'he': 'הוסף ספר'
     },
     modalReadTitleTrans: {
         'en': 'Read Book',
-        'he': 'קרא ספר' 
+        'he': 'קרא ספר'
     },
     modalReadSaveTrans: {
         'en': 'Save changes',
@@ -80,24 +87,26 @@ var gTrans = {
 }
 
 
-function changeLang(lang){
+function changeLang(lang) {
     gCurrLang = lang;
-    if (gCurrLang === 'he') {
-        document.body.classList.add('rtl')
-    } else {
-        document.body.classList.remove('rtl')
-    }
+    saveToStorage('lang', lang);
+    
     doTrans();
 }
 
-function doTrans(){
+function doTrans() {
     var els = document.querySelectorAll('[data-trans]');
-    for(var i = 0; i < els.length; i++){
+    for (var i = 0; i < els.length; i++) {
         var el = els[i];
 
         var transKey = el.getAttribute('data-trans');
         var txt = getTrans(transKey);
         el.innerText = txt;
+    }
+    if (gCurrLang === 'he') {
+        document.body.classList.add('rtl')
+    } else {
+        document.body.classList.remove('rtl')
     }
 }
 
