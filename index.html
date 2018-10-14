@@ -137,6 +137,27 @@
         </div>
     </div>
 
+    
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 data-trans="titleDeleteModalTrans" class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body modal-del-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button data-trans="btnCloseModalTrans" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button data-trans="btnDeleteModalTrans" type="button" onclick="onDeleteBook(this)" data-dismiss="modal" class="btn btn-danger del-book-btn">Delete Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
 

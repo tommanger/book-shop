@@ -41,10 +41,9 @@ function createBook(name, price, imgUrl) {
     }
 }
 
-function deleteBook(elBookId) {
-    // var book = getItemByID(elBookId, gBooks);
+function deleteBook(bookId) {
     var bookIdx = gBooks.findIndex(function (book) {
-        return book.id === elBookId;
+        return book.id === bookId.dataset.bookid;
     });
     gBooks.splice(bookIdx, 1);
     saveToStorage('gBooks', gBooks);

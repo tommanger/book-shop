@@ -83,6 +83,22 @@ var gTrans = {
     modalReadSaveTrans: {
         'en': 'Save changes',
         'he': 'שמור שינויים'
+    },
+    nameTrans: {
+        'en': 'Name:',
+        'he': 'שם הספר:'
+    },
+    titleDeleteModalTrans: {
+        'en': 'Are you sure?',
+        'he': 'אתה בטוח שאתה רוצה למחוק?'
+    },
+    btnCloseModalTrans: {
+        'en': 'Cancel',
+        'he': 'ביטול'
+    },
+    btnDeleteModalTrans: {
+        'en': 'Delete Book',
+        'he': 'מחק את הספר'
     }
 }
 
