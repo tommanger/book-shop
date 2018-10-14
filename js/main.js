@@ -2,10 +2,13 @@
 
 function init(){
     createBooks();
+    doTrans();
     renderList('table');
 }
 
 function renderList(choice){
+    doTrans();
+
     var booksHTMLs;
     if(choice === 'table'){
         booksHTMLs = getBooksTableHTML()
@@ -17,6 +20,7 @@ function renderList(choice){
 
 function getBooksTableHTML() {
     var books = getBooks();
+    doTrans();
 
     var strHTMLs = books.map(function(book){
         return `<tr>
@@ -24,29 +28,36 @@ function getBooksTableHTML() {
                             <td>${book.name}</td>
                             <td>$${book.price}</td>
                             <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#book-details" onclick="onReadClick('${book.id}')">Read</button> 
-                            <button onclick="onUpdateBook('${book.price}',this,'${book.id}')" type="button" class="btn btn-secondary bg-warning">Update</button>
-                            <button onclick="onDeleteBook('${book.id}')" type="button" class="btn btn-success bg-danger">Delete</button>
+                            <button data-trans="buttonReadTrans" type="button" class="btn btn-primary" data-toggle="modal" data-target="#book-details" onclick="onReadClick('${book.id}')">Read</button> 
+                            <button data-trans="buttonUpdateTrans" onclick="onUpdateBook('${book.price}',this,'${book.id}')" type="button" class="btn btn-secondary bg-warning">Update</button>
+                            <button data-trans="buttonDeleteTrans" onclick="onDeleteBook('${book.id}')" type="button" class="btn btn-success bg-danger">Delete</button>
                         </td>
                         <td><img width="30px" src="${book.imgUrl}"></td>
 
                     </tr>`
     })
     return strHTMLs.join();
+    
 }
 
 function onDeleteBook(elBookId){
-    deleteBook(elBookId);
-    renderList('table');
+    if(confirm('are you sure?')){
+        deleteBook(elBookId);
+        renderList('table');
+        doTrans();
+    }
+
 }
 
 function onUpdateBook(price, elTd, elId){
     elTd.parentElement.parentElement.children[2].innerHTML = `<div class="input-group mb-3">
                                                                  <div class="input-group-prepend">
-                                                                   <button class="btn btn-outline-secondary" type="button" id="button-addon1" onclick="saveUpdate('${elId}')">Save</button>
+                                                                   <button data-trans="buttonSaveTrans" class="btn btn-outline-secondary" type="button" id="button-addon1" onclick="saveUpdate('${elId}')">Save</button>
                                                                 </div>
                                                                      <input style="flex:unset; min-width: 4rem;" id="${elId}" type="text" class="form-control" value="${price}" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                                                 </div>`;
+ doTrans();
+
 }
 
 function onReadBook(elBookId){
@@ -54,7 +65,6 @@ function onReadBook(elBookId){
 }
 
 function readAndAddNewBook(){
-    console.log('hello')
     var $title = $('#title-input');
     var $price = $('#price-input');
     if($title.val() && $price.val()){
@@ -63,23 +73,27 @@ function readAndAddNewBook(){
         $price.val('');
         renderList('table');
     }
+    doTrans();
 }
 
 function onReadClick(bookid){
+    
     var books = getBooks();
     var book = getItemByID(bookid,books);
-    $('.modal-body').html(`<img width="300px" src="${book.imgUrl}">
-                           <h1>${book.name}</h1>
-                           <h4>Price: ${book.price}</h4>
-                           <h6 class="book-id" id="${book.id}">Book-ID: ${book.id}</h6>`);
+    $('.read-book-modal').html(`<img width="300px" src="${book.imgUrl}">
+    <h1>${book.name}</h1>
+    <h4><span data-trans="newBookModalPriceNewTrans">Price:</span> ${book.price}</h4>
+    <h6 class="book-id" id="${book.id}"><span data-trans="idTrans">Book-ID</span>: ${book.id}</h6>`);
     $('#rate').text(book.rate);
-       
+    doTrans();
 }
 
 function onUpdateRate(val){
     var rate = $('#rate').text();
     if(val === '+' && rate < 10) $('#rate').text(++rate);
     else if (val === '-' && rate > 0) $('#rate').text(--rate);
+    
+    doTrans();
 }
 
 function onSaveRate(){
@@ -89,20 +103,25 @@ function onSaveRate(){
 }
 
 function onClickSort(el){
-    var choiceSort = el.innerText
-    sortBy(choiceSort);
+    sortBy(el);
     renderList('table');
+    doTrans();
 }
 
 
 function onNextPage(){
     nextPage();
     renderList('table');
-
+    doTrans();
 }
 
 function onPrevPage(){
     prevPage();
     renderList('table');
+    doTrans();
+}
 
+
+function onChangeLang(lang){
+    changeLang(lang);
 }

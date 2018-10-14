@@ -14,20 +14,34 @@
         <img id="contact-img" class="fa fa-comment" aria-hidden="true" src="img/logoTM.png" alt="">
     </div>
 
+    <!-- select language -->
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button id="btn-drpd" data-trans="buttonLangTrans" class="btn btn-outline-secondary dropdown-toggle" type="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" onclick="onChangeLang('en')">English</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" onclick="onChangeLang('he')">עברית</a>
+            </div>
+        </div>
+    </div>
 
-    <h1 class="text-center"> Books shop</h1>
-    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create
-        New Book</button>
+
+    <div class="navbar navbar-light bg-light head-logo">
+        <h1 data-trans="title" class="text-center">Books shop</h1>
+        <img class="" src="img/books.png">
+    </div>
 
     <div class="container">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th onclick="onClickSort(this)" scope="col">Title</th>
-                    <th onclick="onClickSort(this)" scope="col">Price</th>
-                    <th scope="col">Actions</th>
-                    <th scope="col">Image</th>
+                    <th data-trans="idTrans" scope="col">Id</th>
+                    <th data-trans="tableTitleTrans" onclick="onClickSort('Title')" scope="col">Title</th>
+                    <th data-trans="tablePriceTrans" onclick="onClickSort('Price')" scope="col">Price</th>
+                    <th data-trans="tableActionsTrans" scope="col">Actions</th>
+                    <th data-trans="tableImagesTrans" scope="col">Image</th>
 
                 </tr>
             </thead>
@@ -44,37 +58,42 @@
             <label onclick="onNextPage()" class="float-right btn btn-secondary">
                 <input type="radio" name="options" id="option3" autocomplete="off"> ►
             </label>
-        </div>
 
+        </div>
+        <button data-trans="buttonNewTrans" type="button" class="btn btn-link" data-toggle="modal" data-target="#new-book-modal"
+            data-whatever="@mdo">Create
+            New Book</button>
     </div>
     <!-- Modal add book -->
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="addBookModal" aria-hidden="true">
+    <div class="modal fade" id="new-book-modal" tabindex="-1" role="dialog" aria-labelledby="addBookModal" aria-hidden="true">
 
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addBookModal">New BOOK</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 data-trans="newBookModalTitleTrans" class="modal-title" id="addBookModal">New BOOK</h5>
+                    <button type="button" class="close float-left" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Title Name:</label>
+                            <label data-trans="newBookModalTitleNewTrans" for="recipient-name" class="col-form-label">Title
+                                Name:</label>
                             <input type="text" class="form-control" id="title-input">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Price:</label>
+                            <label data-trans="newBookModalPriceNewTrans" for="message-text" class="col-form-label">Price:</label>
                             <input type="text" class="form-control" id="price-input">
 
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="readAndAddNewBook()">Add
+                    <button data-trans="closeModalTrans" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button data-trans="addModalTrans" type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="readAndAddNewBook()">Add
                         Book</button>
                 </div>
             </div>
@@ -89,29 +108,30 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Read Book</h5>
+                    <h5 data-trans="modalReadTitleTrans" class="modal-title" id="exampleModalLabel">Read Book</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body read-book-modal">
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button data-trans="closeModalTrans" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label onclick="onUpdateRate('-')" class="btn btn-secondary active">
                             <input type="radio" name="options" id="option1" autocomplete="off" checked> -
                         </label>
                         <label class="btn text-white bg-dark"">
-                         <span id=" rate"></span>
+                         <span id="rate"></span>
                         </label>
                         <label onclick="onUpdateRate('+')" class="btn btn-secondary">
                             <input type="radio" name="options" id="option3" autocomplete="off"> +
                         </label>
                     </div>
 
-                    <button onclick="onSaveRate()" type="button" class="btn btn-primary">Save changes</button>
+                    <button data-trans="modalReadSaveTrans" onclick="onSaveRate()" type="button" class="btn btn-primary">Save
+                        changes</button>
                 </div>
             </div>
         </div>
@@ -122,9 +142,11 @@
 
 
     <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/popper.js"></script>
     <script src="lib/bs4/js/bootstrap.min.js"></script>
     <script src="js/util-service.js"></script>
     <script src="js/book-service.js"></script>
+    <script src="js/i18n-service.js"></script>
     <script src="js/main.js"></script>
 </body>
 
